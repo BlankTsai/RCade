@@ -1,0 +1,11 @@
+*.exe
+*.dll
+*.o
+*.obj
+*.zip
+/build/
+/dist/
+/.vscode/
+*.log
+.env
+.env.*

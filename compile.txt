@@ -1,0 +1,1 @@
+g++ src/*.cpp -o music_game -I include -lraylib -lopengl32 -lgdi32 -lwinmm
