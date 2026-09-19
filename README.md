@@ -1,0 +1,56 @@
+# RCade
+
+以 C++ 與 raylib 製作的四軌音樂遊戲，起源於大學課程期末專題，持續整理為研究所推甄作品集。
+
+## 作者與素材
+
+- 本專案為作者獨立製作的作品。
+- 遊戲收錄音樂由作者自行製作。
+- 圖片由 ChatGPT 生成。
+- 後續使用 Codex 協助程式分析、文件整理與優化；各次變更及驗證結果會記錄於 Git 歷史與 CHANGELOG.md。
+- 音效與其他素材的詳細來源見 ASSETS.md；本儲存庫尚未授予開源授權。
+
+## 目前功能
+
+- 開場、主選單、五首歌曲選擇、倒數與成績畫面。
+- A、S、D、F 對應四條軌道。
+- Perfect、Good、Miss 與錯誤按鍵計分。
+- 依歌曲 BPM 產生音符，軌道目前為隨機配置。
+- 成績画面按 Enter 返回主選單。
+
+## 建置與執行
+
+原始開發環境為 Windows、g++ 與 raylib。原專案未記錄 raylib 精確版本，目前尚未重新驗證建置環境。
+
+在專案根目錄執行原始編譯指令（需先安裝並設定相容的編譯器及 raylib）：
+
+```sh
+g++ src/*.cpp -o music_game -I include -lraylib -lopengl32 -lgdi32 -lwinmm
+```
+
+請從專案根目錄啟動遊戲，讓相對路徑 resources/ 能正確載入。Windows 動態連結建置亦需相容的 raylib 與編譯器執行階段 DLL。
+
+執行檔、DLL、備份 ZIP 與個人編輯器設定不納入 Git；本機既有檔案仍保留。可重現建置與發行包將在後續整理。
+
+## 程式結構
+
+| 路徑 | 用途 |
+| --- | --- |
+| src/main.cpp | 主迴圈與場景分派 |
+| src/Game.cpp | 遊戲生命週期與歌曲結束流程 |
+| src/Block.cpp | 音符生成、移動及 Miss |
+| src/Input.cpp | 按鍵、判定及計分 |
+| src/Audio.cpp | 音樂串流 |
+| src/Render.cpp | 畫面、選單及轉場 |
+| src/SongDatabase.cpp | 歌曲資料與 BPM |
+| include/ | 結構、介面與參數 |
+| resources/ | 音樂、圖片及其他素材 |
+| readme.pdf | 原始專案文件，保留作為歷史資料 |
+
+## 優化進度
+
+目前保留原始版本，尚未實施效能或判定修正。原始碼分析發現高頻日誌、同幀多鍵輸入限制，以及拍點與落下時間耦合等待改善項目。卡頓原因尚待量測，不能據此宣稱已有改善。
+
+第一階段已獲作者核准：確認編譯環境、量測幀耗時並比較降低日誌輸出前後的結果。後续階段先提出具體方案，再由作者核准。
+
+原始基準標籤：`baseline-original`。更新摘要見 [CHANGELOG.md](CHANGELOG.md)，驗證規劃見 [docs/OPTIMIZATION.md](docs/OPTIMIZATION.md)。
