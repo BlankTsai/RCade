@@ -17,3 +17,11 @@
 - 新增 MSYS2 建置腳本及一般／安靜量測／詳細日誌量測啟動器。
 - 驗證：GCC 14.2.0、raylib 5.5 建置成功；統計測試與錯誤參數處理通過。原有初始化及未使用變數警告仍存在。
 - 尚未驗證：完整遊玩、音訊輸出、實際卡頓改善幅度。不得將編譯或單元測試通過視為效能改善證據。
+
+## README review and countdown correction
+
+- Shortened the English README into a project entry point and moved implementation details to docs/DESIGN.md.
+- Corrected build/launch instructions, the flat resources layout, input versus automatic Miss, and profiling semantics.
+- Explicitly distinguished verified build/statistics checks from the still-pending gameplay A/B experiment.
+- Corrected countdown text from 4-3-2-GO to 3-2-1-GO without changing its four-second duration or music start timing.
+- Validation: rebuilt with the existing MSYS2 toolchain; full visual/audio playthrough remains pending.

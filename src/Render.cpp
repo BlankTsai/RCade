@@ -37,9 +37,9 @@ void DrawCountdown(double countdownStartTime)
     {
         DrawText("GO!", SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT / 2 - 40, 80, RED);
     }
-    else if (count >= 0)
+    else if (elapsed >= 0.0 && elapsed < 3.0)
     {
-        DrawText(TextFormat("%d", count + 1), SCREEN_WIDTH / 2 - 20, SCREEN_HEIGHT / 2 - 40, 80, BLACK);
+        DrawText(TextFormat("%d", count), SCREEN_WIDTH / 2 - 20, SCREEN_HEIGHT / 2 - 40, 80, BLACK);
     }
 }
 
