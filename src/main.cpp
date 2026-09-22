@@ -4,12 +4,28 @@
 #include "Render.h"
 #include "Constants.h" // 確保 Scene enum 可用
 #include <ctime>
+#include <iostream>
+#include "FrameProfile.h"
 #include <string> // For std::string
 
-int main()
+int main(int argc, char** argv)
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Music Game");
-    SetTraceLogLevel(LOG_ALL); // 
+    bool verbose = false;
+    std::string profilePath;
+    for (int i = 1; i < argc; ++i) {
+        const std::string arg = argv[i];
+        if (arg == "--verbose") verbose = true;
+        else if (arg == "--profile" && i + 1 < argc) profilePath = argv[++i];
+        else {
+            std::cerr << "Usage: music_game [--verbose] [--profile output.csv]\n";
+            return 1;
+        }
+    }
+    std::vector<double> frameSamples;
+    if (!profilePath.empty()) frameSamples.reserve(120000);
+    SetTraceLogLevel(verbose ? LOG_ALL : LOG_WARNING);
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "RCade");
+
     InitAudioDevice(); // 🔴 在所有音訊操作之前初始化音訊設備
     SetTargetFPS(60);
     srand(time(0));
@@ -27,6 +43,11 @@ int main()
 
     while (!WindowShouldClose())
     {
+        // Time the complete gameplay frame, including EndDrawing's frame pacing.
+        const double frameStart = GetTime();
+        const bool sampleFrame = !profilePath.empty() &&
+            gameState.currentScene == Scene::Playing &&
+            !gameState.isCountdown && !gameState.gameEnding;
         // 更新邏輯
         switch (gameState.currentScene)
         {
@@ -87,6 +108,7 @@ int main()
         }
 
         EndDrawing();
+        if (sampleFrame) frameSamples.push_back((GetTime() - frameStart) * 1000.0);
     }
 
     // 清理資源
@@ -101,5 +123,23 @@ int main()
     CloseAudioDevice();       // 🔴 在最後關閉音訊設備
     CloseWindow();
 
+    if (!profilePath.empty()) {
+        std::ofstream csv(profilePath);
+        if (!csv) {
+            std::cerr << "Cannot write profile: " << profilePath << '\n';
+            return 2;
+        }
+        csv << "frame,milliseconds\n" << std::fixed << std::setprecision(6);
+        for (std::size_t i = 0; i < frameSamples.size(); ++i)
+            csv << i << ',' << frameSamples[i] << '\n';
+        csv.close();
+        if (!csv) { std::cerr << "Profile write failed\n"; return 2; }
+        const auto s = SummarizeFrames(frameSamples);
+        std::cout << "Gameplay frames=" << frameSamples.size()
+                  << " log=" << (verbose ? "verbose" : "warning")
+                  << " mean_ms=" << s.mean << " p95_ms=" << s.p95
+                  << " p99_ms=" << s.p99 << " max_ms=" << s.maximum
+                  << " over25ms=" << s.over25 << " over50ms=" << s.over50 << '\n';
+    }
     return 0;
 }

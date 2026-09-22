@@ -20,7 +20,7 @@
 
 ## 建置與執行
 
-原始開發環境為 Windows、g++ 與 raylib。原專案未記錄 raylib 精確版本，目前尚未重新驗證建置環境。
+已於 Windows 使用 MSYS2 MinGW64 GCC 14.2.0 與 raylib 5.5 重新編譯成功。執行 `./build.ps1` 建置，或用 `-Toolchain` 指定其他相容的工具鏈目錄。新版位於 `build/music_game.exe`，本機雙擊 `Play.cmd` 即可從正確的素材目錄啟動。原始執行檔仍保留於根目錄。
 
 在專案根目錄執行原始編譯指令（需先安裝並設定相容的編譯器及 raylib）：
 
@@ -30,7 +30,7 @@ g++ src/*.cpp -o music_game -I include -lraylib -lopengl32 -lgdi32 -lwinmm
 
 請從專案根目錄啟動遊戲，讓相對路徑 resources/ 能正確載入。Windows 動態連結建置亦需相容的 raylib 與編譯器執行階段 DLL。
 
-執行檔、DLL、備份 ZIP 與個人編輯器設定不納入 Git；本機既有檔案仍保留。可重現建置與發行包將在後續整理。
+執行檔、DLL、備份 ZIP 與個人編輯器設定不納入 Git；本機既有檔案仍保留。建置腳本會複製配套 DLL 到 build；可攜式發行包將另行整理。
 
 ## 程式結構
 
@@ -49,9 +49,8 @@ g++ src/*.cpp -o music_game -I include -lraylib -lopengl32 -lgdi32 -lwinmm
 
 ## 優化進度
 
-目前保留原始版本，尚未實施效能或判定修正。原始碼分析發現高頻日誌、同幀多鍵輸入限制，以及拍點與落下時間耦合等待改善項目。卡頓原因尚待量測，不能據此宣稱已有改善。
+第一次優化已將預設日誌降為警告與錯誤，並加入可選的遊玩幀耗時量測。`--verbose` 可恢復原本日誌量，`--profile output.csv` 會在正常退出後保存資料。尚未完成實際遊玩 A/B 量測，改善幅度未定。輸入、判定與拍點邏輯尚未修改。
 
 第一階段已獲作者核准：確認編譯環境、量測幀耗時並比較降低日誌輸出前後的結果。後續階段先提出具體方案，再由作者核准。
 
 原始基準標籤：`baseline-original`。更新摘要見 [CHANGELOG.md](CHANGELOG.md)，驗證規劃見 [docs/OPTIMIZATION.md](docs/OPTIMIZATION.md)。
-
