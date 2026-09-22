@@ -4,28 +4,6 @@
 
 RCade began as an independently developed university course project and continues as a personal engineering project. Players use **A / S / D / F** to hit notes as they approach the judgment line.
 
-## Screenshots
-
-Actual gameplay captures provided by the author on September 23, 2026.
-
-### Main Menu
-
-![RCade main menu featuring a pianist in a ruined city and a click-to-start prompt](docs/screenshots/main-menu.png)
-
-The opening menu introduces the game's visual style.
-
-### Song Selection
-
-![Song selection screen listing the five original tracks](docs/screenshots/song-selection.png)
-
-Choose from five original songs with different BPM values.
-
-### Gameplay
-
-![Four-lane gameplay with falling notes, a judgment line, score and Miss feedback](docs/screenshots/gameplay.png)
-
-Use A / S / D / F to hit approaching notes. The capture shows the score and timing feedback during play.
-
 ## Gameplay
 
 - Five original tracks with BPM-driven notes and randomly assigned lanes.
@@ -139,3 +117,24 @@ The original source baseline is preserved by the `baseline-original` tag. Subseq
 See [ASSETS.md](ASSETS.md) for source details and outstanding asset information. No open-source license is granted; third-party dependencies retain their own licenses.
 
 All rights reserved for the author's original contributions.
+
+## Screenshots
+
+
+### Main Menu
+
+![RCade main menu featuring a pianist in a ruined city and a click-to-start prompt](docs/screenshots/main-menu.png)
+
+The opening menu introduces the game's visual style.
+
+### Song Selection
+
+![Song selection screen listing the five original tracks](docs/screenshots/song-selection.png)
+
+Choose from five original songs with different BPM values.
+
+### Gameplay
+
+![Four-lane gameplay with falling notes, a judgment line, score and Miss feedback](docs/screenshots/gameplay.png)
+
+Use A / S / D / F to hit approaching notes. The capture shows the score and timing feedback during play.
