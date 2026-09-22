@@ -4,6 +4,28 @@
 
 RCade began as an independently developed university course project and continues as a personal engineering project. Players use **A / S / D / F** to hit notes as they approach the judgment line.
 
+## Screenshots
+
+Actual gameplay captures provided by the author on September 23, 2026.
+
+### Main Menu
+
+![RCade main menu featuring a pianist in a ruined city and a click-to-start prompt](docs/screenshots/main-menu.png)
+
+The opening menu introduces the game's visual style.
+
+### Song Selection
+
+![Song selection screen listing the five original tracks](docs/screenshots/song-selection.png)
+
+Choose from five original songs with different BPM values.
+
+### Gameplay
+
+![Four-lane gameplay with falling notes, a judgment line, score and Miss feedback](docs/screenshots/gameplay.png)
+
+Use A / S / D / F to hit approaching notes. The capture shows the score and timing feedback during play.
+
 ## Gameplay
 
 - Five original tracks with BPM-driven notes and randomly assigned lanes.
@@ -51,7 +73,7 @@ On the author's local machine, the root-level `music_game.exe` has also been rep
 | CLI validation | Invalid arguments rejected |
 | Gameplay A/B comparison | **Not completed; no measured improvement is claimed** |
 
-Build and statistics checks do not establish gameplay smoothness or audio correctness. Full gameplay and audio verification remain pending.
+The author play-tested the updated game on September 23, 2026 and reported noticeably smoother gameplay. This is qualitative feedback, not a controlled A/B measurement; the size and cause of the improvement remain unverified. Full regression and audio checks remain pending.
 
 ## Compare Logging Modes
 

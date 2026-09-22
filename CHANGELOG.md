@@ -25,3 +25,10 @@
 - Explicitly distinguished verified build/statistics checks from the still-pending gameplay A/B experiment.
 - Corrected countdown text from 4-3-2-GO to 3-2-1-GO without changing its four-second duration or music start timing.
 - Validation: rebuilt with the existing MSYS2 toolchain; full visual/audio playthrough remains pending.
+
+## 2026-09-23 — Gameplay screenshots and play-test feedback
+
+- Added three unmodified author-provided screenshots to the README: main menu, song selection and gameplay.
+- Stored screenshots under docs/screenshots with portable filenames and repository-relative image links.
+- The author reported noticeably smoother gameplay after trying the updated version. This is qualitative feedback; no controlled A/B result or measured improvement percentage is available.
+- Validation: screenshot copies match the supplied files by SHA256; README image paths resolve locally. No game code or executable changed.
